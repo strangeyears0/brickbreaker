@@ -7,7 +7,7 @@ class Game:
 
         #General setup
         pygame.init()
-        self.display_surface = pygame.display.set_mode((WINNDOW_WIDTH,WINDOW_HEIGHT))
+        self.display_surface = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
         pygame.display.set_caption("Brick Breaker")
 
         #background
@@ -21,7 +21,7 @@ class Game:
         self.ball = Ball(self.all_sprites,self.player)
     def create_bg(self):
         bg_original = pygame.image.load("../graphics/background/wepik-export-20230712175345mPfb.png").convert()
-        scaled_bg = pygame.transform.scale(bg_original,(WINNDOW_WIDTH,WINDOW_HEIGHT))
+        scaled_bg = pygame.transform.scale(bg_original,(WINDOW_WIDTH,WINDOW_HEIGHT))
         return scaled_bg
     def run(self):
         last_time = time.time()
