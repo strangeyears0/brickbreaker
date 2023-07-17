@@ -1,6 +1,6 @@
 import pygame, sys, time
 from settings import *
-from sprites import Player, Ball
+from sprites import Player, Ball, Block
 
 class Game:
     def __init__(self):
@@ -15,14 +15,25 @@ class Game:
 
         #sprite group setup
         self.all_sprites = pygame.sprite.Group()
+        self.block_sprites = pygame.sprite.Group()
 
         # setup
         self.player = Player(self.all_sprites)
-        self.ball = Ball(self.all_sprites,self.player)
+        self.stage_setup()
+        self.ball = Ball(self.all_sprites,self.player,self.block_sprites)
     def create_bg(self):
         bg_original = pygame.image.load("../graphics/background/wepik-export-20230712175345mPfb.png").convert()
         scaled_bg = pygame.transform.scale(bg_original,(WINDOW_WIDTH,WINDOW_HEIGHT))
         return scaled_bg
+
+    def stage_setup(self):
+        for row_index, row in enumerate(BLOCK_MAP):
+
+            for col_index, col in enumerate(row):
+                if col != ' ':
+                    y = row_index * (BLOCK_HEIGHT + GAP_SIZE) + GAP_SIZE // 2
+                    x = col_index *(BLOCK_WIDTH + GAP_SIZE) + GAP_SIZE //2
+                    Block(col,(x,y),[self.all_sprites,self.block_sprites])
     def run(self):
         last_time = time.time()
         while True:
