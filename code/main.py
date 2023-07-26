@@ -21,6 +21,11 @@ class Game:
         self.player = Player(self.all_sprites)
         self.stage_setup()
         self.ball = Ball(self.all_sprites,self.player,self.block_sprites)
+
+
+        #lives
+
+        self.lives_surf = pygame.image.load('../graphics/lives/lives.png').convert_alpha()
     def create_bg(self):
         bg_original = pygame.image.load("../graphics/background/wepik-export-20230712175345mPfb.png").convert()
         scaled_bg = pygame.transform.scale(bg_original,(WINDOW_WIDTH,WINDOW_HEIGHT))
@@ -31,9 +36,14 @@ class Game:
 
             for col_index, col in enumerate(row):
                 if col != ' ':
-                    y = row_index * (BLOCK_HEIGHT + GAP_SIZE) + GAP_SIZE // 2
+                    y = TOP_OFFSET + row_index * (BLOCK_HEIGHT + GAP_SIZE) + GAP_SIZE // 2
                     x = col_index *(BLOCK_WIDTH + GAP_SIZE) + GAP_SIZE //2
                     Block(col,(x,y),[self.all_sprites,self.block_sprites])
+
+    def display_lives(self):
+        for i in range(self.player.lives):
+            x = i * (self.lives_surf.get_width() +2)
+            self.display_surface.blit(self.lives_surf,(x,4))
     def run(self):
         last_time = time.time()
         while True:
@@ -44,7 +54,7 @@ class Game:
 
             #event loop
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type == pygame.QUIT or self.player.lives <=0:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
@@ -56,6 +66,7 @@ class Game:
             #draw the frame
             self.display_surface.blit(self.bg,(0,0))
             self.all_sprites.draw(self.display_surface)
+            self.display_lives()
             #update window
             pygame.display.update()
 
