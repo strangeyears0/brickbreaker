@@ -37,7 +37,7 @@ class Game:
             for col_index, col in enumerate(row):
                 if col != ' ':
                     y = TOP_OFFSET + row_index * (BLOCK_HEIGHT + GAP_SIZE) + GAP_SIZE // 2
-                    x = col_index *(BLOCK_WIDTH + GAP_SIZE) + GAP_SIZE //2
+                    x = col_index *(BLOCK_WIDTH + GAP_SIZE) + GAP_SIZE // 2
                     Block(col,(x,y),[self.all_sprites,self.block_sprites])
 
     def display_lives(self):

@@ -2,18 +2,29 @@ WINDOW_WIDTH = 1280
 WINDOW_HEIGHT = 720
 
 BLOCK_MAP = [
-    '00000000',
-    '00000000',
-    '00000000',
-    '          ',
-    '        ',
-    '        ',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '11111111',
+    '        '
 ]
 
 
 
-GAP_SIZE = 2
+GAP_SIZE = 4
 
-BLOCK_HEIGHT = WINDOW_HEIGHT/len(BLOCK_MAP) - GAP_SIZE
-BLOCK_WIDTH = WINDOW_WIDTH/len(BLOCK_MAP[0]) - GAP_SIZE
+BLOCK_HEIGHT = (WINDOW_HEIGHT/len(BLOCK_MAP) - GAP_SIZE)/1.5
+BLOCK_WIDTH = (WINDOW_WIDTH/len(BLOCK_MAP[0]) - GAP_SIZE)
 TOP_OFFSET = WINDOW_HEIGHT // 15
